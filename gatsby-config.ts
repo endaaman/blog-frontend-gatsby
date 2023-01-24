@@ -11,22 +11,16 @@ const config: GatsbyConfig = {
   // don't need to define it here (just if you need to change the options)
   plugins: [
     `gatsby-plugin-pnpm`,
+    'gatsby-plugin-postcss',
     {
-      resolve: "gatsby-source-strapi",
+      resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: process.env.STRAPI_API_URL || "http://localhost:1337",
+        apiURL: process.env.STRAPI_API_URL || 'http://127.0.0.1:1337',
         accessToken: process.env.STRAPI_TOKEN,
         collectionTypes: [
-          {
-            singularName: "blog",
-            queryParams: {
-              publicationState:
-                process.env.GATSBY_IS_PREVIEW === "true" ? "preview" : "live",
-              populate: {
-                title: "*",
-              },
-            },
-          },
+          'article',
+          'tag',
+          'category',
         ],
       },
     },
